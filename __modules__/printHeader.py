@@ -11,15 +11,19 @@ fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 # open the header text file
 headerFile = open(fileDir + "\\resources\\header", "r")
+headerText = str(headerFile.read())
 
 # open the config file
 config = configparser.ConfigParser()
-configFile = config.read("..\\mainConfig.ini")
+config.read(parentDir + "\\config\\mainConfig.ini")
 
-for line in headerFile:
-    fout.write(line.replace("[VERSION]", "Orange"))
+# loadvalues from config file
+versionNumber = config.get("default", "version")
+
+# replace version number from config file
+headerText = headerText.replace("[VERSION]", versionNumber)
 
 # print header funciton
 def printHeader():
-    print(Fore.RED + headerFile.read() + Style.RESET_ALL)
+    print(Fore.RED + headerText + Style.RESET_ALL)
 

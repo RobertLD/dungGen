@@ -7,11 +7,14 @@ from colorama import init
 from colorama import Fore, Back, Style
 import importlib
 import configparser
-import printHeader
 
 # gets the current path of installation to assist with opening/reading files
 fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
+
+# import list of modules in __modules__
+from __modules__ import printHeader
+
 
 # enables colored output on windows machines
 init(convert=True)

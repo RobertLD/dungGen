@@ -10,7 +10,7 @@ fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 headerFile = open(fileDir + "\\resources\\header", "r")
 
-
+# print header funciton
 def printHeader():
     print(Fore.RED + headerFile.read() + Style.RESET_ALL)
 

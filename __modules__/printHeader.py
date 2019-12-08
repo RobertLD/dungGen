@@ -10,7 +10,7 @@ import configparser
 fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 # open the header text file
-headerFile = open(fileDir + "\\resources\\header", "r")
+headerFile = open(fileDir + "\\resources\\header", "r", encoding="utf8")
 headerText = str(headerFile.read())
 
 # open the config file
@@ -21,7 +21,7 @@ config.read(parentDir + "\\config\\mainConfig.ini")
 versionNumber = config.get("default", "version")
 
 # replace version number from config file
-headerText = headerText.replace("[VERSION]", versionNumber)
+headerText = headerText.replace("[x.x.x]", versionNumber)
 
 # print header funciton
 def printHeader():

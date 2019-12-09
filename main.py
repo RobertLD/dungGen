@@ -22,8 +22,7 @@ init(convert=True)
 printHeader.printHeader()
 
 print(
-    "\n\n"
-    + Fore.RED
+	Fore.RED
     + Style.BRIGHT
     + "Input theme. For theme options type -ls"
     + Style.NORMAL

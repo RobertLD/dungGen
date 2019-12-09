@@ -26,5 +26,5 @@ headerText = headerText.replace("[x.x.x]", versionNumber)
 
 # print header funciton
 def printHeader():
-    print(Fore.RED + Back.WHITE + headerText + Style.RESET_ALL)
+    print(Fore.RED + Back.WHITE + headerText + Style.RESET_ALL + "\n\n")
 

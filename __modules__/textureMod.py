@@ -53,16 +53,19 @@ def initialPrint ():#(setting, theme):
 	locationString = "k"
 	entranceString = "l"
 	#print(locationArray)
-	#print(len(locationArray[0]))
-	for x in range(0,len(locationArray)-1):
+	#print(len(locationArray))
+	for x in range(0,len(locationArray)):
+		print(int(location))
+		print(int(locationArray[x][0]))
 		if int(location) <= int(locationArray[x][0]):
 			locationString = locationArray[x][1]
-			pass
+			break
 	#print(locationString)
-	for x in range(0,len(entranceArray)-1):
+	for x in range(0,len(entranceArray)):
 		if int(entrance) <= int(entranceArray[x][0]):
 			entranceString = entranceArray[x][1]
-			pass
+			break
+		#print("oooof")
 	initialString = locationString + entranceString
 	initialString = initialString.replace('","',',')
 	print(initialString)

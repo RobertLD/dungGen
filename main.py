@@ -21,5 +21,12 @@ init(convert=True)
 
 printHeader.printHeader()
 
-print("\n\n" + Fore.RED + "Input theme. For theme options type -ls" + Fore.CYAN)
+print(
+    "\n\n"
+    + Fore.RED
+    + Style.BRIGHT
+    + "Input theme. For theme options type -ls"
+    + Style.NORMAL
+    + Fore.CYAN
+)
 theme = input()

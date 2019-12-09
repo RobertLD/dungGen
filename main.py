@@ -56,18 +56,18 @@ if seedOrCustom != "y":
 
     for i in range(0, size):
         for j in range(0, len(roomIDs[i])):
-            roomIDs[i][j] = random.randint(10 ** (15 - 1), (10 ** 15) - 1)
+            roomIDs[i][j] = random.randint(10 ** (20 - 1), (10 ** 20) - 1)
 
 # account for the fact that the user may want to use their own
 else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
     random.seed(seed)
-    roomIDs = [[0 for x in range(1)] for y in range(1)]
+    roomIDs = [[0 for x in range(20)] for y in range(20)]
 
-    for i in range(0, 1):
+    for i in range(0, 20):
         for j in range(0, len(roomIDs[i])):
-            roomIDs[i][j] = random.randint(10 ** (15 - 1), (10 ** 15) - 1)
+            roomIDs[i][j] = random.randint(10 ** (20 - 1), (10 ** 20) - 1)
 
 # output the generated dungeon ID so that users can copy it if they like
 dungeonID = seed

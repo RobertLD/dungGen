@@ -5,6 +5,7 @@ from colorama import init
 from colorama import Fore, Back, Style
 import importlib
 import configparser
+import random
 
 # gets the current path of installation to assist with opening/reading files
 fileDir = os.path.dirname(os.path.abspath(__file__))

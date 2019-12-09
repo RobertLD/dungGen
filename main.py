@@ -8,8 +8,6 @@ from colorama import Fore, Back, Style
 import importlib
 import configparser
 import numpy
-import random
-import hashlib
 
 # gets the current path of installation to assist with opening/reading files
 fileDir = os.path.dirname(os.path.abspath(__file__))
@@ -17,6 +15,7 @@ parentDir = os.path.dirname(fileDir)
 
 # import list of modules in __modules__
 from __modules__ import printHeader
+from __modules__ import seedGen
 
 
 # enables colored output on windows machines
@@ -29,7 +28,7 @@ seedOrCustom = input()
 if seedOrCustom != "y":
     # ask for basic userinputs
     print(Fore.RED + Style.BRIGHT + "Size:" + Style.NORMAL + Fore.CYAN)
-    size = input()
+    size = int(input())
     print(Fore.RED + Style.BRIGHT + "Theme:" + Style.NORMAL + Fore.CYAN)
     theme = input()
     print(Fore.RED + Style.BRIGHT + "Setting" + Style.NORMAL + Fore.CYAN)
@@ -47,30 +46,15 @@ if seedOrCustom != "y":
 
     # use above data to generate a seed of format ###.##.#
     userSelectedSeed = (
-        size + theme + setting + complexity + wealth + faction + story + difficulty
+        str(size) + theme + setting + complexity + wealth + faction + story + difficulty
     )
-
-    # TODO: Move seed generation into a module to keep things a little less messy
-    # hash the result of the use selected inputs
-    hashUserSelectedSeed = int(
-        (hashlib.md5(userSelectedSeed.encode("utf-8"))).hexdigest(), 16
-    )
-    # generate a second seed
-    randomSeed = int(random.random() * 100)
-
-    unhashedSeed = str(hashUserSelectedSeed) + str(randomSeed)
-
-    seed = (hashlib.md5(unhashedSeed.encode("utf-8"))).hexdigest()
-    seed = int(seed, 16) % ((2 ^ 32) - 1)
-
+    seedArray = seedGen.seedGen(userSelectedSeed, size)
 # account for the fact that the user may want to use their own
 else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
 
-numpy.random.seed(seed * 100000)
-array = numpy.random.rand(10, 10)
-for i in range(0, len(array)):
-    for j in range(0, len(array[i])):
-        array[i][j] = int(array[i][j] * 100000000)
+# seed numpy with our generated seed
+# and generete the random room-seeds
+array = seedArray
 print(array)

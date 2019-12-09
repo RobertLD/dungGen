@@ -26,6 +26,7 @@ printHeader.printHeader()
 print(Fore.RED + Style.BRIGHT + "Use dungeon code? [y/n]" + Style.NORMAL + Fore.CYAN)
 seedOrCustom = input()
 
+
 if seedOrCustom != "y":
     # ask for basic userinputs
     print(Fore.RED + Style.BRIGHT + "Size:" + Style.NORMAL + Fore.CYAN)
@@ -62,11 +63,13 @@ else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
     random.seed(seed)
-    roomIDs = [[0 for x in range(size)] for y in range(size)]
+    roomIDs = [[0 for x in range(1)] for y in range(1)]
 
-    for i in range(0, size):
+    for i in range(0, 1):
         for j in range(0, len(roomIDs[i])):
             roomIDs[i][j] = random.randint(10 ** (15 - 1), (10 ** 15) - 1)
 
-print("Youre DUNGEON ID is: " + str(seed))
+# output the generated dungeon ID so that users can copy it if they like
+dungeonID = seed
+print("Youre DUNGEON ID is: " + str(dungeonID))
 print(roomIDs)

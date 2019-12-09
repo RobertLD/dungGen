@@ -48,28 +48,77 @@ if seedOrCustom != "y":
 
     # use above data to generate a seed
     userSelectedSeed = (
-        str(size) + theme + setting + complexity + wealth + faction + story + difficulty
+        str(size)
+        + "|"
+        + theme
+        + "|"
+        + setting
+        + "|"
+        + complexity
+        + "|"
+        + wealth
+        + "|"
+        + faction
+        + "|"
+        + story
+        + "|"
+        + difficulty
+        + "|"
     )
+
+    # generate the seed
     seed = seedGen.seedGen(userSelectedSeed, size)
+
+    # seed the random number generator
     random.seed(seed)
+
+    # generate size * size array of zeros
     roomIDs = [[0 for x in range(size)] for y in range(size)]
 
+    # fill the generated array with random int of 20 digits
     for i in range(0, size):
         for j in range(0, len(roomIDs[i])):
             roomIDs[i][j] = random.randint(10 ** (20 - 1), (10 ** 20) - 1)
+
+    userVariables = (
+        str(size),
+        theme,
+        setting,
+        complexity,
+        wealth,
+        faction,
+        story,
+        difficulty,
+        seed,
+    )
 
 # account for the fact that the user may want to use their own
 else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
-    random.seed(seed)
-    roomIDs = [[0 for x in range(seed[i])] for y in range(seed[i])]
 
-    for i in range(0, 20):
+    random.seed(seed)
+
+    # if the first character is not a number -- make it a number
+    if seed[0].isalpha():
+        size = ord(seed[0])
+    else:
+        size = int(seed[0])
+
+    roomIDs = [[0 for x in range(size)] for y in range(size)]
+
+    for i in range(0, size):
         for j in range(0, len(roomIDs[i])):
             roomIDs[i][j] = random.randint(10 ** (20 - 1), (10 ** 20) - 1)
+    # seperate given key information to fill the user variables
+    userVariables = seed.split("|")
 
 # output the generated dungeon ID so that users can copy it if they like
 dungeonID = seed
 print("Youre DUNGEON ID is: " + str(dungeonID))
+print(userVariables)
+
+
+# TODO: Build map generation based roomIDS. Pass variable list to entrance gen
+# generateMap(roomIDs, size)
 print(roomIDs)

@@ -12,6 +12,7 @@ parentDir = os.path.dirname(fileDir)
 # open the header text file
 headerFile = open(fileDir + "\\resources\\header", "r", encoding="utf8")
 headerText = str(headerFile.read())
+headerFile.close()
 
 # open the config file
 config = configparser.ConfigParser()

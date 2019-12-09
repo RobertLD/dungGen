@@ -8,6 +8,7 @@ from colorama import Fore, Back, Style
 import importlib
 import configparser
 import numpy
+import random
 
 # gets the current path of installation to assist with opening/reading files
 fileDir = os.path.dirname(os.path.abspath(__file__))
@@ -44,17 +45,28 @@ if seedOrCustom != "y":
     print(Fore.RED + Style.BRIGHT + "Difficulty" + Style.NORMAL + Fore.CYAN)
     difficulty = input()
 
-    # use above data to generate a seed of format ###.##.#
+    # use above data to generate a seed
     userSelectedSeed = (
         str(size) + theme + setting + complexity + wealth + faction + story + difficulty
     )
-    seedArray = seedGen.seedGen(userSelectedSeed, size)
+    seed = seedGen.seedGen(userSelectedSeed, size)
+    random.seed(seed)
+    roomIDs = [[0 for x in range(size)] for y in range(size)]
+
+    for i in range(0, size):
+        for j in range(0, len(roomIDs[i])):
+            roomIDs[i][j] = random.randint(10 ** (15 - 1), (10 ** 15) - 1)
+
 # account for the fact that the user may want to use their own
 else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
+    random.seed(seed)
+    roomIDs = [[0 for x in range(size)] for y in range(size)]
 
-# seed numpy with our generated seed
-# and generete the random room-seeds
-array = seedArray
-print(array)
+    for i in range(0, size):
+        for j in range(0, len(roomIDs[i])):
+            roomIDs[i][j] = random.randint(10 ** (15 - 1), (10 ** 15) - 1)
+
+print("Youre DUNGEON ID is: " + str(seed))
+print(roomIDs)

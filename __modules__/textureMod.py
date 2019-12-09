@@ -1,14 +1,22 @@
 #!/usr/bin/env python3
 import sys
 import os
+import pandas as pd
 from colorama import init
 from colorama import Fore, Back, Style
 import importlib
 import configparser
+import numpy 
+import csv
 
 # gets the current path of installation to assist with opening/reading files
 fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
+
+def readcsv(filename):
+	with open(filename, newline='') as csvfile:
+		data = list(csv.reader(csvfile))
+	return(data)
 
 def textureGen():#(roomKey, nE, sE, eE, wE):
 	roomKey = 28443015103400553158
@@ -30,4 +38,32 @@ def textureGen():#(roomKey, nE, sE, eE, wE):
 	loot = roomWeights[7]
 	doorway = roomWeights[8]
 	npc = roomWeights[9]	
-textureGen()
+
+def initialPrint ():#(setting, theme):
+	print("location seed?")
+	location = input()
+	print("entrance seed?")
+	entrance = input()
+	print("setting?")
+	setting = input()
+	print("theme?")
+	theme = input()
+	locationArray = readcsv(parentDir + "\\resources\\location\\" + setting + ".csv")
+	entranceArray = readcsv(parentDir + "\\resources\\entrance\\" + theme + ".csv")
+	locationString = "k"
+	entranceString = "l"
+	#print(locationArray)
+	#print(len(locationArray[0]))
+	for x in range(0,len(locationArray)-1):
+		if int(location) <= int(locationArray[x][0]):
+			locationString = locationArray[x][1]
+			pass
+	#print(locationString)
+	for x in range(0,len(entranceArray)-1):
+		if int(entrance) <= int(entranceArray[x][0]):
+			entranceString = entranceArray[x][1]
+			pass
+	initialString = locationString + entranceString
+	initialString = initialString.replace('","',',')
+	print(initialString)
+initialPrint()

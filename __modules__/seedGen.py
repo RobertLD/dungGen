@@ -2,6 +2,7 @@
 import numpy
 import random
 import hashlib
+from random import randint
 
 
 def seedGen(userSelectedSeed, size):
@@ -20,12 +21,15 @@ def seedGen(userSelectedSeed, size):
     # ensure that the given seed is not out of bounds for the numpy function
     # whose maximum value is 2^32
     seed = int(seed, 16) % ((2 ^ 32) - 1)
-    numpy.random.seed(seed)
-    array = numpy.random.rand(size * 2, size * 2)
-    for i in range(0, len(array)):
+
+    array = numpy.empty(size, dtype=object)
+    random.seed(seed)
+    # array = numpy.random.randint(, , size=(size, size))
+
+    # init array of size * size
+    array = [[0 for x in range(size)] for y in range(size)]
+
+    for i in range(0, size):
         for j in range(0, len(array[i])):
-            # take each element in the array and salt it
-            array[i][j] = int(
-                int(array[i][j] * (10 ** 8))
-            )  # adjust values to fit the integer range we need
+            array[i][j] = randint(10 ** (15 - 1), (10 ** 15) - 1)
     return array

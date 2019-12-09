@@ -48,7 +48,7 @@ if seedOrCustom != "y":
     userSelectedSeed = (
         str(size) + theme + setting + complexity + wealth + faction + story + difficulty
     )
-    seed = seedGen.seedGen(userSelectedSeed, size)
+    seedArray = seedGen.seedGen(userSelectedSeed, size)
 # account for the fact that the user may want to use their own
 else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
@@ -56,5 +56,5 @@ else:
 
 # seed numpy with our generated seed
 # and generete the random room-seeds
-
+array = seedArray
 print(array)

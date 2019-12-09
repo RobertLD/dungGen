@@ -17,6 +17,7 @@ parentDir = os.path.dirname(fileDir)
 # import list of modules in __modules__
 from __modules__ import printHeader
 from __modules__ import seedGen
+from __modules__ import mapGen
 
 
 # enables colored output on windows machines
@@ -107,6 +108,7 @@ else:
 
     roomIDs = [[0 for x in range(size)] for y in range(size)]
 
+    # TODO: Edit the roomID creater to only create  # size IDs
     for i in range(0, size):
         for j in range(0, len(roomIDs[i])):
             roomIDs[i][j] = random.randint(10 ** (20 - 1), (10 ** 20) - 1)
@@ -116,9 +118,43 @@ else:
 # output the generated dungeon ID so that users can copy it if they like
 dungeonID = seed
 print("Youre DUNGEON ID is: " + str(dungeonID))
-print(userVariables)
+# print(userVariables[0])
 
 
 # TODO: Build map generation based roomIDS. Pass variable list to entrance gen
 # generateMap(roomIDs, size)
-print(roomIDs)
+# head = mapGen(userVariables, roomIDs,)
+head = mapGen.__init__(None, userVariables, roomIDs)
+
+
+def printInorder(root):
+
+    if root:
+
+        # First recur on left child
+        printInorder(root.north)
+        # First recur on left child
+        printInorder(root.south)
+        # First recur on left child
+        printInorder(root.east)
+        # First recur on left child
+        printInorder(root.west)
+
+        # then print the data of node
+        print("Room: " + root.roomID)
+
+
+printInorder(head)
+# print(head.roomID)
+# print(
+#     "Head Values -- ID: "
+#     + str(head.roomID)
+#     + "Children: "
+#     + str(head.north)
+#     + "\t"
+#     + str(head.south)
+#     + "\t"
+#     + str(head.east)
+#     + "\t"
+#     + str(head.west)
+# )

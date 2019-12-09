@@ -63,7 +63,7 @@ else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
     random.seed(seed)
-    roomIDs = [[0 for x in range(20)] for y in range(20)]
+    roomIDs = [[0 for x in range(seed[i])] for y in range(seed[i])]
 
     for i in range(0, 20):
         for j in range(0, len(roomIDs[i])):

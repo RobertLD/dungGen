@@ -55,8 +55,6 @@ def initialPrint ():#(setting, theme):
 	#print(locationArray)
 	#print(len(locationArray))
 	for x in range(0,len(locationArray)):
-		print(int(location))
-		print(int(locationArray[x][0]))
 		if int(location) <= int(locationArray[x][0]):
 			locationString = locationArray[x][1]
 			break

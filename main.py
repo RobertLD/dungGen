@@ -29,6 +29,8 @@ if seedOrCustom != "y":
     theme = input()
     print(Fore.RED + Style.BRIGHT + "Size:" + Style.NORMAL + Fore.CYAN)
     size = input()
+
+# account for the fact that the user may want to use their own seed
 else:
     print("Not implemented yet!!")
 

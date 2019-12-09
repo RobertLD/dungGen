@@ -20,12 +20,15 @@ from __modules__ import printHeader
 init(convert=True)
 
 printHeader.printHeader()
+print(Fore.RED + Style.BRIGHT + "Use dungeon code? [y/n]" + Style.NORMAL + Fore.CYAN)
+seedOrCustom = input()
 
-print(
-	Fore.RED
-    + Style.BRIGHT
-    + "Input theme. For theme options type -ls"
-    + Style.NORMAL
-    + Fore.CYAN
-)
-theme = input()
+if seedOrCustom != "y":
+    # ask for basic userinputs
+    print(Fore.RED + Style.BRIGHT + "Theme:" + Style.NORMAL + Fore.CYAN)
+    theme = input()
+    print(Fore.RED + Style.BRIGHT + "Size:" + Style.NORMAL + Fore.CYAN)
+    size = input()
+else:
+    print("Not implemented yet!!")
+

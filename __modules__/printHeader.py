@@ -10,7 +10,7 @@ import configparser
 fileDir = os.path.dirname(os.path.abspath(__file__))
 parentDir = os.path.dirname(fileDir)
 # open the header text file
-headerFile = open(fileDir + "\\resources\\header", "r", encoding="utf8")
+headerFile = open(parentDir + "\\resources\\header", "r", encoding="utf8")
 headerText = str(headerFile.read())
 headerFile.close()
 

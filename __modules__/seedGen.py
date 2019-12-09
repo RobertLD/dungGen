@@ -10,7 +10,7 @@ def seedGen(userSelectedSeed, size):
     # hashUserSelectedSeed = int(
     #    (hashlib.md5(userSelectedSeed.encode("utf-8"))).hexdigest(), 16
     # )
-    userSelectedSeed = int(userSelectedSeed)
+    # userSelectedSeed = int(userSelectedSeed)
     # generate a randomn salt to shift the hash of the final seed
     salt = random.randint(0, 99)
 

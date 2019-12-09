@@ -68,5 +68,9 @@ else:
     print(Fore.RED + Style.BRIGHT + "Seed:" + Style.NORMAL + Fore.CYAN)
     seed = input()
 
-numpy.random.seed(seed)
-print(numpy.random.rand(10, 10))
+numpy.random.seed(seed * 100000)
+array = numpy.random.rand(10, 10)
+for i in range(0, len(array)):
+    for j in range(0, len(array[i])):
+        array[i][j] = int(array[i][j] * 100000000)
+print(array)

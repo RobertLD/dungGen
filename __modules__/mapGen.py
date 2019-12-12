@@ -20,9 +20,48 @@ class Room:
         self.east = bool(random.getrandbits(1))
         self.west = bool(random.getrandbits(1))
 
-    def printRoom(self):
-        # prints all the information about the room!
-        print(
-            "RoomID: %s \n\nExits: \nNorth: %s\nSouth: %s\nEast: %s\nWest: %s\n"
-            % (self.id, self.north, self.south, self.east, self.west)
-        )
+    def insert(self, roomIds, c, r):
+        # Compare the new value with the parent node
+        if self.north == True:
+            self.north.insert = Room(roomIds[c][r + 1])
+        if self.south == True:
+            self.south.insert = Room(roomIds[c][r - 1])
+        if self.east == True:
+            self.east.insert = Room(roomIds[c + 1][r])
+        if self.west == True:
+            self.west.insert = Room(roomIds[c - 1][r])
+
+
+def generateMap(Head, RoomIds, c, r, size):
+    if size <= 0:
+        return
+
+    if Head.north == True:
+        try:
+            Head.north = Room(roomID=RoomIds[c + 1][r])
+        except:
+            pass
+        tmp = Head.north
+        return generateMap(tmp, RoomIds, c + 1, r, size - 1)
+    if Head.south == True:
+        try:
+            Head.north = Room(roomID=RoomIds[c - 1][r])
+        except:
+            pass
+        tmp = Head.north
+        return generateMap(tmp, RoomIds, c - 1, r, size - 1)
+    if Head.east == True:
+        try:
+            Head.north = Room(roomID=RoomIds[c][r + 1])
+        except:
+            pass
+        tmp = Head.north
+        return generateMap(tmp, RoomIds, c, r + 1, size - 1)
+    if Head.west == True:
+        try:
+            Head.north = Room(roomID=RoomIds[c][r - 1])
+        except:
+            pass
+        tmp = Head.north
+        return generateMap(tmp, RoomIds, c, r - 1, size - 1)
+

@@ -105,7 +105,6 @@ else:
         size = ord(seed[0])
     else:
         size = int(seed[0])
-
     roomIDs = [[0 for x in range(size)] for y in range(size)]
 
     # TODO: Edit the roomID creater to only create  # size IDs
@@ -113,48 +112,48 @@ else:
         for j in range(0, len(roomIDs[i])):
             roomIDs[i][j] = random.randint(10 ** (20 - 1), (10 ** 20) - 1)
     # seperate given key information to fill the user variables
+    print(roomIDs)
     userVariables = seed.split("|")
-
 # output the generated dungeon ID so that users can copy it if they like
 dungeonID = seed
 print("Youre DUNGEON ID is: " + str(dungeonID))
-# print(userVariables[0])
 
 
 # TODO: Build map generation based roomIDS. Pass variable list to entrance gen
 # generateMap(roomIDs, size)
 # head = mapGen(userVariables, roomIDs,)
-head = mapGen.__init__(None, userVariables, roomIDs)
+head = mapGen.Room(roomID=roomIDs[5][5])
+rooms = mapGen.generateMap(head, roomIDs, 5, 5, size)
 
 
-def printInorder(root):
+def printInorder(root, i):
 
     if root:
 
         # First recur on left child
-        printInorder(root.north)
+        try:
+            printInorder(root.north, i + 1)
+        except:
+            pass
         # First recur on left child
-        printInorder(root.south)
+        try:
+            printInorder(root.south, i + 1)
+        except:
+            pass
         # First recur on left child
-        printInorder(root.east)
+        try:
+            printInorder(root.east, i + 1)
+        except:
+            pass
         # First recur on left child
-        printInorder(root.west)
+        try:
+            printInorder(root.west, i + 1)
+        except:
+            pass
 
         # then print the data of node
-        print("Room: " + root.roomID)
+        print("Room: @ " + str(i) + " is " + str(root.id))
 
 
-printInorder(head)
-# print(head.roomID)
-# print(
-#     "Head Values -- ID: "
-#     + str(head.roomID)
-#     + "Children: "
-#     + str(head.north)
-#     + "\t"
-#     + str(head.south)
-#     + "\t"
-#     + str(head.east)
-#     + "\t"
-#     + str(head.west)
-# )
+printInorder(head, 0)
+

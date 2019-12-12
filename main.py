@@ -17,6 +17,7 @@ parentDir = os.path.dirname(fileDir)
 # import list of modules in __modules__
 from __modules__ import printHeader
 from __modules__ import seedGen
+from __modules__ import textureMod
 
 
 # enables colored output on windows machines
@@ -26,15 +27,25 @@ printHeader.printHeader()
 print(Fore.RED + Style.BRIGHT + "Use dungeon code? [y/n]" + Style.NORMAL + Fore.CYAN)
 seedOrCustom = input()
 
+settingsFile = open(parentDir + "\\dunggen\\resources\\settings.txt", "r")
+themesFile = open(parentDir + "\\dunggen\\resources\\themes.txt", "r")
+settingsText = str(settingsFile.read())
+themesText = str(themesFile.read())
 
 if seedOrCustom != "y":
     # ask for basic userinputs
     print(Fore.RED + Style.BRIGHT + "Size:" + Style.NORMAL + Fore.CYAN)
     size = int(input())
-    print(Fore.RED + Style.BRIGHT + "Theme:" + Style.NORMAL + Fore.CYAN)
+    print(Fore.RED + Style.BRIGHT + "Theme:\nInput 'ls' for a list of options." + Style.NORMAL + Fore.CYAN)
     theme = input()
-    print(Fore.RED + Style.BRIGHT + "Setting" + Style.NORMAL + Fore.CYAN)
+    while theme == "ls":
+        print(Fore.RED + Style.BRIGHT + themesText + "\nTheme:" + Style.NORMAL + Fore.CYAN)
+        theme = input()
+    print(Fore.RED + Style.BRIGHT + "Setting:\nInput 'ls' for a list of options." + Style.NORMAL + Fore.CYAN)
     setting = input()
+    while setting == "ls":
+        print(Fore.RED + Style.BRIGHT + settingsText + "\nSetting:" + Style.NORMAL + Fore.CYAN)
+        setting = input()
     print(Fore.RED + Style.BRIGHT + "Wealth:" + Style.NORMAL + Fore.CYAN)
     wealth = input()
     print(Fore.RED + Style.BRIGHT + "Faction:" + Style.NORMAL + Fore.CYAN)
@@ -122,3 +133,5 @@ print(userVariables)
 # TODO: Build map generation based roomIDS. Pass variable list to entrance gen
 # generateMap(roomIDs, size)
 print(roomIDs)
+
+textureMod.initialPrint(setting,theme,dungeonID)

@@ -39,15 +39,20 @@ def textureGen():#(roomKey, nE, sE, eE, wE):
 	doorway = roomWeights[8]
 	npc = roomWeights[9]	
 
-def initialPrint ():#(setting, theme):
+def initialPrint (setting, theme, dungeonID):
+	#print(ord(dungeonID))
+	dungeonID = dungeonID[len(dungeonID)-4:len(dungeonID)]
+	print(dungeonID)
+	dungeonID = int(dungeonID,16)
+	print(dungeonID)
 	print("location seed?")
 	location = input()
 	print("entrance seed?")
 	entrance = input()
-	print("setting?")
-	setting = input()
-	print("theme?")
-	theme = input()
+	#print("setting?")
+	#setting = input()
+	#print("theme?")
+	#theme = input()
 	locationArray = readcsv(parentDir + "\\resources\\location\\" + setting + ".csv")
 	entranceArray = readcsv(parentDir + "\\resources\\entrance\\" + theme + ".csv")
 	locationString = "k"
@@ -67,4 +72,4 @@ def initialPrint ():#(setting, theme):
 	initialString = locationString + entranceString
 	initialString = initialString.replace('","',',')
 	print(initialString)
-initialPrint()
+#initialPrint()

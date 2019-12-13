@@ -49,6 +49,7 @@ class Room:
         self.west = bool(random.getrandbits(1))
         self.north = bool(random.getrandbits(1))
         self.south = bool(random.getrandbits(1))
+        self.east = bool(random.getrandbits(1))
 
 
 def generateMap(Head, RoomIds, c, r, size):

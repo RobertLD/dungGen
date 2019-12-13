@@ -18,31 +18,31 @@ class Room:
         # use the seed to determine if it has rooms attached
         if previousConnection == "north":
             # set the previous connection to the connecting rooms pointer
-            self.north = previousConnectionPointer
-            self.south = bool(random.getrandbits(1))
-            self.east = bool(random.getrandbits(1))
-            self.west = bool(random.getrandbits(1))
-            return
-        elif previousConnection == "south":
-            # set the previous connection to the connecting rooms pointer
             self.south = previousConnectionPointer
             self.north = bool(random.getrandbits(1))
             self.east = bool(random.getrandbits(1))
             self.west = bool(random.getrandbits(1))
             return
-        elif previousConnection == "east":
+        elif previousConnection == "south":
             # set the previous connection to the connecting rooms pointer
-            self.east = previousConnectionPointer
-            self.north = bool(random.getrandbits(1))
+            self.north = previousConnectionPointer
             self.south = bool(random.getrandbits(1))
+            self.east = bool(random.getrandbits(1))
             self.west = bool(random.getrandbits(1))
             return
-        elif previousConnection == "west":
+        elif previousConnection == "east":
             # set the previous connection to the connecting rooms pointer
             self.west = previousConnectionPointer
             self.north = bool(random.getrandbits(1))
             self.south = bool(random.getrandbits(1))
             self.east = bool(random.getrandbits(1))
+            return
+        elif previousConnection == "west":
+            # set the previous connection to the connecting rooms pointer
+            self.east = previousConnectionPointer
+            self.north = bool(random.getrandbits(1))
+            self.south = bool(random.getrandbits(1))
+            self.west = bool(random.getrandbits(1))
             return
 
         # base case no pointers passed

@@ -119,14 +119,14 @@ else:
 dungeonID = seed
 print("Youre DUNGEON ID is: " + str(dungeonID))
 
-size = 10
+size = 100
 # TODO: Build map generation based roomIDS. Pass variable list to entrance gen
 # generateMap(roomIDs, size)
 # head = mapGen(userVariables, roomIDs,)
 head = mapGen.Room(
     previousConnection=None, previousConnectionPointer=None, roomID=roomIDs[5][5]
 )
-rooms = mapGen.generateMap(head, roomIDs, 5, 5, size)
+mapGen.generateMap(head, roomIDs, 5, 5, size)
 
 
 def printInorder(root, i):

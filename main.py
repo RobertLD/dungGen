@@ -130,37 +130,33 @@ mapGen.generateMap(head, roomIDs, 5, 5, size)
 
 
 def printInorder(root, i):
+    if i < 1000:
+        if root:
 
-    if root:
-
-        # First recur on left child
-        try:
-            printInorder(root.north, i + 1)
-        except:
-            pass
-        # First recur on left child
-        try:
-            printInorder(root.south, i + 1)
-        except:
-            pass
-        # First recur on left child
-        try:
-            printInorder(root.east, i + 1)
-        except:
-            pass
-        # First recur on left child
-        try:
-            printInorder(root.west, i + 1)
-        except:
-            pass
+            # First recur on left child
+            try:
+                printInorder(root.north, i + 1)
+            except:
+                pass
+            # First recur on left child
+            try:
+                printInorder(root.south, i + 1)
+            except:
+                pass
+            # First recur on left child
+            try:
+                printInorder(root.east, i + 1)
+            except:
+                pass
+            # First recur on left child
+            try:
+                printInorder(root.west, i + 1)
+            except:
+                pass
 
         # then print the data of node
-        print("Room: @ " + str(i) + " is " + str(root.id))
-        print(
-            "Exits:\n North: %s\n South: %s\n East: %s\n West: %s\n"
-            % (root.north, root.south, root.east, root.west)
-        )
+        root.printRoom()
 
 
-# printInorder(head, 0)
+printInorder(head, 0)
 

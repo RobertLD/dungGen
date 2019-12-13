@@ -51,21 +51,29 @@ class Room:
         self.south = bool(random.getrandbits(1))
         self.east = bool(random.getrandbits(1))
 
+    def printRoom(self):
+        print("Room ID: " + str(self.id))
+        print("Room Pointer: " + str(self))
+        print(
+            "Exits:\n North: %s\n South: %s\n East: %s\n West: %s\n"
+            % (self.north, self.south, self.east, self.west)
+        )
+
 
 def generateMap(Head, RoomIds, c, r, size):
-    print("Creating Node! Size @ " + str(size))
-    if size == 0:
+    print("Creating Node!  C: %d \t R: %d" % (c, r))
+    if size <= 0:
         return
     if Head.north == True:
-        Head.north = Room(RoomIds[c + 1][r], "south", Head)
+        Head.north = Room(RoomIds[r + 1][c], "north", Head)
         return generateMap(Head.north, RoomIds, c + 1, r, size - 1)
     if Head.south == True:
-        Head.south = Room(RoomIds[c - 1][r], "north", Head)
+        Head.south = Room(RoomIds[r - 1][c], "south", Head)
         return generateMap(Head.south, RoomIds, c - 1, r, size - 1)
     if Head.east == True:
-        Head.east = Room(RoomIds[c][r + 1], "west", Head)
+        Head.east = Room(RoomIds[r][c + 1], "east", Head)
         return generateMap(Head.east, RoomIds, c, r + 1, size - 1)
     if Head.west == True:
-        Head.west = Room(RoomIds[c][r - 1], "east", Head)
+        Head.west = Room(RoomIds[r][c - 1], "west", Head)
         return generateMap(Head.west, RoomIds, c, r - 1, size - 1)
 

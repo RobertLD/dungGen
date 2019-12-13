@@ -1,0 +1,19 @@
+Suggested changes to mapGen Function
+
+If: The roomID is dynamicly generated from the dungeonID seed it would allow
+all of the rooms to have a unique seed, and also reduce the complexity of our
+current algorithm.
+If: The roomID variable is reduced into a 1D array it is possible for the roomIDs to be
+assigned following the function: "1 + 4n" where n is the room number. The roomID returned
+by this would be the second room (regardless of its position) the numbers in-between would
+determine its connecing rooms if there are to be any via the seed.
+If: The 2D array of RoomIDs is kept, we can possibly apply some logic on the array to simply reduce
+some columns and rows to zero  (or None) and use the spatial orientation of the array to determine the
+connections of the room. This would resolve the reused seed problem as well as the duplicate rooms (spatially)
+
+Things to fix:
+Remove redundant seeds. It should not be possible to generate rooms directly on top of eachother
+The function sometimes returns before all True values have been overwritten with room pointers
+
+Overall goal:
+Create a data object that gives enough information to construct a room. As well as the spatial orientation of said room.

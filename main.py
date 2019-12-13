@@ -154,7 +154,11 @@ def printInorder(root, i):
 
         # then print the data of node
         print("Room: @ " + str(i) + " is " + str(root.id))
+        print(
+            "Exits:\n North: %s\n South: %s\n East: %s\n West: %s\n"
+            % (root.north, root.south, root.east, root.west)
+        )
 
 
-printInorder(head, 1)
+printInorder(head, 0)
 

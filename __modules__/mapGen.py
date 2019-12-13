@@ -22,31 +22,24 @@ class Room:
 
     def insert(self, roomIds, c, r):
         # Compare the new value with the parent node
-        if self.north == True:
-            self.north.insert = Room(roomIds[c + 1][r])
-        if self.south == True:
-            self.south.insert = Room(roomIds[c - 1][r])
-        if self.east == True:
-            self.east.insert = Room(roomIds[c][r + 1])
-        if self.west == True:
-            self.west.insert = Room(roomIds[c][r - 1])
+        if self == True:
+            self = Room(roomIds[c][r])
 
 
 def generateMap(Head, RoomIds, c, r, size):
     print("Creating Node! Size @ " + str(size))
-    if size <= 0:
-        return Head
-    Head = Room(RoomIds[c][r])
+    if size == 0:
+        return
     if Head.north == True:
-        tmp = Head.north
-        return generateMap(tmp, RoomIds, c + 1, r, size - 1)
+        Head.north = Room(RoomIds[c + 1][r])
+        return generateMap(Head.north, RoomIds, c + 1, r, size - 1)
     if Head.south == True:
-        tmp = Head.south
-        return generateMap(tmp, RoomIds, c - 1, r, size - 1)
+        Head.south = Room(RoomIds[c - 1][r])
+        return generateMap(Head.south, RoomIds, c - 1, r, size - 1)
     if Head.east == True:
-        tmp = Head.east
-        return generateMap(tmp, RoomIds, c, r + 1, size - 1)
+        Head.east = Room(RoomIds[c][r + 1])
+        return generateMap(Head.east, RoomIds, c, r + 1, size - 1)
     if Head.west == True:
-        tmp = Head.west
-        return generateMap(tmp, RoomIds, c, r - 1, size - 1)
+        Head.west = Room(RoomIds[c][r - 1])
+        return generateMap(Head.west, RoomIds, c, r - 1, size - 1)
 

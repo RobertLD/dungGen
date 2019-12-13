@@ -7,7 +7,8 @@ from colorama import init
 from colorama import Fore, Back, Style
 import importlib
 import configparser
-import numpy
+
+# import numpy
 import random
 
 # gets the current path of installation to assist with opening/reading files
@@ -155,5 +156,5 @@ def printInorder(root, i):
         print("Room: @ " + str(i) + " is " + str(root.id))
 
 
-printInorder(head, 0)
+printInorder(head, 1)
 

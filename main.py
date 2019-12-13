@@ -134,4 +134,5 @@ print(userVariables)
 # generateMap(roomIDs, size)
 print(roomIDs)
 
+#run function that produces and prints entry location and description based on setting, theme, and dungeonID for random but consistent num
 textureMod.initialPrint(setting,theme,dungeonID)
